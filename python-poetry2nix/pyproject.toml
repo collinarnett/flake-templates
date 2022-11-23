@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "poetry-app"
+version = "0.1.0"
+description = "An example poetry app"
+authors = ["Collin Arnett <collin@arnett.it>"]
+license = "MIT"
+packages = [{include = "poetry_app"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+matplotlib = "^3.5.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+poetry_app = 'poetry_app:main'
