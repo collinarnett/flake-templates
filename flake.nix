@@ -16,7 +16,7 @@
       };
       python-poetry2nix = {
         path = ./python-poetry2nix;
-        description = " Python template created using poetry2nix";
+        description = "Python template created using poetry2nix";
       };
     };
   };
