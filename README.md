@@ -1,6 +1,6 @@
 # flake-templates
 
-My personal (opinionated) collection of flake templates to help my get things done.
+My personal (opinionated) collection of flake templates to help me get things done.
 
 ## Templates
 
