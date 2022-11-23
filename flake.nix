@@ -2,6 +2,7 @@
   description = "My personal (opinionated) collection of flake templates to help my get things done";
   outputs = {self}: {
     templates = {
+      default = self.templates.blank;
       blank = {
         path = ./blank;
         description = "A blank flake template to create other templates";
@@ -19,5 +20,6 @@
         description = "Python template created using poetry2nix";
       };
     };
+    
   };
 }
