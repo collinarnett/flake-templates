@@ -1,5 +1,5 @@
 {
-  description = "A ";
+  description = "A python project that uses jupyterWith";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     poetry2nix.url = "github:nix-community/poetry2nix";
