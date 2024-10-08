@@ -11,15 +11,6 @@
         path = ./python;
         description = "Basic python template using only Nix based python development";
       };
-      python-jupyterWith = {
-        path = ./python-jupyterWith;
-        description = "Python template created using jupyterWith";
-      };
-      python-poetry2nix = {
-        path = ./python-poetry2nix;
-        description = "Python template created using poetry2nix";
-      };
     };
-    
   };
 }

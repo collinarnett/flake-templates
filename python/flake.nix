@@ -1,41 +1,38 @@
 {
-  description = "A simple python dev template";
+  description = "A simply python flake";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
   };
-  outputs = {
+  outputs = inputs @ {
     self,
     nixpkgs,
-  }: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-
-    # Packages you need for your IDE
-    python-lsp-utils = ps:
-      with ps; [
-        black
-        isort
-      ];
-
-    # Packages you want in your environment (for experimentation)
-    dev-packages = ps:
-      with ps; [
-        numpy
-        pandas
-      ];
-    # A python package you're developing
-    # python-package = pkgs.python310Packages.callPackage ./package/default.nix {};
-    python-dev = pkgs.python310.withPackages (
-      ps:
-        dev-packages ps
-        ++ python-lsp-utils ps
-      # ++ [python-package]
-    );
-  in {
-    devShells.${system}.default = pkgs.mkShell {
-      packages = [python-dev];
-      # Other packages you want in your devshell
-      # buildInputs = with pkgs; [...];
+    flake-parts,
+  }:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = ["x86_64-linux"];
+      perSystem = {
+        pkgs,
+        self',
+        ...
+      }: {
+        # Usually these are not needed for my most basic projects
+        # packages.default = pkgs.hello;
+        # apps.default = {
+        #   type = "app";
+        #   program = "${self'.packages.default}/bin/hello";
+        # };
+        devShells.default = pkgs.mkShell {
+          packages = with pkgs; [
+            pyright # language server
+            (python3.withPackages (ps:
+              with ps; [
+                isort # sort imports
+                flake8 # formatting
+                black # formatting
+              ]))
+          ];
+        };
+      };
     };
-  };
 }
